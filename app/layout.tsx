@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/Navbar";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import BootstrapClient from "./bootstrap-client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +37,7 @@ export default function RootLayout({
       <body
         className={inter.variable}
       >
+        <BootstrapClient />
         <NavBar/>
         {children}
       </body>
