@@ -1,9 +1,30 @@
 "use client";
 
+import { useState } from "react";
+
 export default function ContentPlanner() {
+  const [title, setTitle] = useState("");
+  const [status, setStatus] = useState("Idea");
+  const [platform, setPlatform] = useState("Youtube");
+
+  function handleCreate(e) {
+    e.preventDefault();
+
+    const newContent = {
+      title,
+      status,
+      platform,
+    };
+
+    console.log("Created content:", newContent);
+
+    setTitle("");
+    setStatus("idea");
+    setPlatform("youtube");
+  }
   return (
     <div className="container d-flex align-items-center justify-content-between py-4">
-      {/* ✅ Modal MUST be inside the return */}
+      {/* MODAL */}
       <div
         className="modal fade"
         id="exampleModal"
@@ -13,37 +34,90 @@ export default function ContentPlanner() {
       >
         <div className="modal-dialog">
           <div className="modal-content">
+            {/* Header */}
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
+                New Content
               </h1>
               <button
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              ></button>
+              />
             </div>
 
-            <div className="modal-body">...</div>
+            {/* ✅ FORM starts here */}
+            <form onSubmit={handleCreate}>
+              <div className="modal-body">
+                {/* Title */}
+                <div className="mb-3">
+                  <label className="form-label">Title</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="what are we making?"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                </div>
 
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-              </button>
-            </div>
+                {/* Status */}
+                <div className="mb-3">
+                  <label className="form-label">Status</label>
+                  <select
+                    className="form-select"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="idea">Idea</option>
+                    <option value="filming">Filming</option>
+                    <option value="editing">Editing</option>
+                    <option value="published">Published</option>
+                  </select>
+                </div>
+
+                {/* Platform */}
+                <div className="mb-3">
+                  <label className="form-label">Platform</label>
+                  <select
+                    className="form-select"
+                    value={platform}
+                    onChange={(e) => setPlatform(e.target.value)}
+                  >
+                    <option value="youtube">YouTube</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="instagram">Instagram</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="submit"
+                  className="btn btn-brand"
+                  data-bs-dismiss="modal"
+                >
+                  Create
+                </button>
+              </div>
+            </form>
+            {/* ✅ FORM ends here */}
           </div>
         </div>
       </div>
 
-      {/* The title and description */}
+      {/* Page title */}
       <div>
         <h1 className="fs-2" style={{ fontWeight: 700 }}>
           📅 Content Planner
@@ -53,7 +127,7 @@ export default function ContentPlanner() {
         </p>
       </div>
 
-      {/* The button to add new content */}
+      {/* Trigger button */}
       <button
         type="button"
         className="btn btn-brand p-3"
