@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import ContentCard from "../../components/ContentCard";
 
 export default function ContentPlanner() {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("Idea");
   const [platform, setPlatform] = useState("Youtube");
+
+  const [contentItems, setContentItems] = useState([]);
 
   function handleCreate(e) {
     e.preventDefault();
@@ -16,7 +19,11 @@ export default function ContentPlanner() {
       platform,
     };
 
-    console.log("Created content:", newContent);
+    let updated = [newContent, ...contentItems];
+
+    setContentItems(updated);
+
+    console.log(contentItems);
 
     setTitle("");
     setStatus("idea");
