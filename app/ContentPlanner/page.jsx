@@ -49,7 +49,7 @@ export default function ContentPlanner() {
   return (
     <>
       <div className="container d-flex align-items-center justify-content-between py-4">
-        {/* MODAL */}
+        {/* New Content Entry MODAL */}
         <div
           className="modal fade"
           id="exampleModal"
@@ -72,7 +72,7 @@ export default function ContentPlanner() {
                 />
               </div>
 
-              {/* ✅ FORM starts here */}
+              {/* FORM starts here */}
               <form onSubmit={handleCreate}>
                 <div className="modal-body">
                   {/* Title */}
@@ -137,11 +137,10 @@ export default function ContentPlanner() {
                   </button>
                 </div>
               </form>
-              {/* ✅ FORM ends here */}
+              {/* FORM ends here */}
             </div>
           </div>
         </div>
-
         {/* Page title */}
         <div>
           <h1 className="fs-2" style={{ fontWeight: 700 }}>
@@ -164,11 +163,11 @@ export default function ContentPlanner() {
         </button>
       </div>
 
-      {/* ✅ GRID of cards */}
+      {/* GRID of cards */}
       <div className="container mt-4">
         <div className="row g-4">
           {/* IDEAS COLUMN */}
-          <div className="col-md-3">
+          <div className="col-md-3 ">
             <h5 className="text-center">Ideas</h5>
             {ideas.map((item, index) => (
               <ContentCard
